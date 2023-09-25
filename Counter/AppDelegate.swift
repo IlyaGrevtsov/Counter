@@ -34,4 +34,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
-print ("hello world")
