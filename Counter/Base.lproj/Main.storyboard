@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -25,7 +26,7 @@
                                     <fontDescription key="titleFontDescription" name="AppleColorEmoji" family="Apple Color Emoji" pointSize="50"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="minus:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IPG-8W-jmB"/>
+                                    <action selector="didPressMinussButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bHL-m4-VAe"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MFU-uW-beR">
@@ -59,7 +60,7 @@
                                     <fontDescription key="titleFontDescription" name="AppleColorEmoji" family="Apple Color Emoji" pointSize="50"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="plus:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rAl-dE-lfb"/>
+                                    <action selector="didPressPlusButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qNv-5l-EeT"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4so-Lg-CE5">
@@ -71,7 +72,7 @@
                                     <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="27"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="resetScore:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SWF-xr-Ca0"/>
+                                    <action selector="resetScoreLabel:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pOA-f5-4wg"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QW7-36-B95">
@@ -93,7 +94,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Очистить историю"/>
                                 <connections>
-                                    <action selector="resetHistory:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JFw-Wa-WMn"/>
+                                    <action selector="resetHistoryTextView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AKK-NN-LeE"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hX4-FB-CnS">
@@ -117,8 +118,12 @@
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="Score" destination="NZK-yQ-cO0" id="ctq-Ie-dRd"/>
-                        <outlet property="history" destination="hX4-FB-CnS" id="Gr2-rq-00n"/>
+                        <outlet property="historyTextView" destination="hX4-FB-CnS" id="4Tg-PF-mZY"/>
+                        <outlet property="minusButton" destination="hOT-vU-j6u" id="Iiu-NP-S1k"/>
+                        <outlet property="plusButton" destination="VWL-qx-W45" id="Y5G-HK-XFe"/>
+                        <outlet property="resetButton" destination="4so-Lg-CE5" id="Ukc-nr-loB"/>
+                        <outlet property="resetHistory" destination="ZWu-q1-Puh" id="bTM-bl-AJL"/>
+                        <outlet property="scoreLabel" destination="NZK-yQ-cO0" id="dP8-cD-oOw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -131,7 +136,7 @@
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -1,87 +1,80 @@
-//
-//  ViewController.swift
-//  Counter
-//
-//  Created by user on 22.09.2023.
-//
-
 import UIKit
 
 class ViewController: UIViewController {
-    @IBOutlet weak var score: UILabel!
-    @IBOutlet weak var buttonMinus: UIButton!
-    @IBOutlet weak var plusButton: UIButton!
-    @IBOutlet weak var resetButton: UIButton!
-    @IBOutlet weak var history: UITextView!
-    @IBOutlet weak var resetHistory: UIButton!
+    @IBOutlet weak private var scoreLabel: UILabel!
+    @IBOutlet weak private var minusButton: UIButton!
+    @IBOutlet weak private var plusButton: UIButton!
+    @IBOutlet weak private var resetButton: UIButton!
+    @IBOutlet weak private var historyTextView: UITextView!
+    @IBOutlet weak private var resetHistory: UIButton!
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        history.text += "История изменений: \n"
-        history.isEditable = false
-
+        historyTextView.text += "История изменений: \n"
+        historyTextView.isEditable = false
+        
     }
     
-    func data () -> String {
+    private func data () -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
         let formattedDate = dateFormatter.string(from: Date())
         return (formattedDate)
         
     }
-        
-        private func updateScoreLabel() {
-            score.text = "\(labelScore)"
+    
+    private func updateScoreLabel() {
+        scoreLabel.text = "\(labelScore)"
+    }
+    var labelScore: Int = 0 {
+        didSet {
+            updateScoreLabel()
         }
-        var labelScore: Int = 0 {
-            didSet {
-                updateScoreLabel()
-            }
-        }
+    }
+    
+    @IBAction private func didPressMinussButton(_ sender: Any) {
+        let range = NSRange (location: -1, length: 1)
+        historyTextView.scrollRangeToVisible(range)
         
-        @IBAction func minus(_ sender: Any) {
-            let range = NSRange (location: -1, length: 1)
-            history.scrollRangeToVisible(range)
-            
-            if labelScore >= 1 {
-                labelScore -= 1
-            } else {
-                return (labelScore = 0)
-            }
-            if labelScore > 0 {
-                history.text += "\(data()) Значение измененно на -1 \n"
-            } else {
-                return (history.text += "\(data()) Попытка уменьшить значение счётчика ниже 0 \n")
-            }
-            
+        if labelScore >= 1 {
+            labelScore -= 1
+        } else {
+            return (labelScore = 0)
         }
         
-        @IBAction func plus(_ sender: Any) {
-            let range = NSRange (location: -1, length: 1)
-            history.scrollRangeToVisible(range)
-
-            labelScore += 1
-            history.text += "\(data()) Значение измененно на +1 \n"
-            
-            
-        }
-        
-        @IBAction func resetScore(_ sender: Any) {
-            let range = NSRange (location: -1, length: 1)
-            history.scrollRangeToVisible(range)
-
-            labelScore = 0
-            history.text += "\(data()) Значение сброшено \n"
-        }
-        
-        @IBAction func resetHistory(_ sender: Any) {
-            history.text = "История изменений: \n"
+        if labelScore > 0 {
+            historyTextView.text += "\(data()) Значение измененно на -1 \n"
+        } else {
+            return (historyTextView.text += "\(data()) Попытка уменьшить значение счётчика ниже 0 \n")
         }
         
     }
     
+    @IBAction private func didPressPlusButton(_ sender: Any) {
+        let range = NSRange (location: -1, length: 1)
+        historyTextView.scrollRangeToVisible(range)
+        
+        labelScore += 1
+        historyTextView.text += "\(data()) Значение измененно на +1 \n"
+        
+        
+    }
     
+    @IBAction private func resetScoreLabel(_ sender: Any) {
+        let range = NSRange (location: -1, length: 1)
+        historyTextView.scrollRangeToVisible(range)
+        
+        labelScore = 0
+        historyTextView.text += "\(data()) Значение сброшено \n"
+    }
+    
+    @IBAction private func resetHistoryTextView(_ sender: Any) {
+        historyTextView.text = "История изменений: \n"
+    }
+    
+}
+
+
 
